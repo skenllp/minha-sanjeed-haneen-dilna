@@ -49,11 +49,9 @@ $$('[data-split]').forEach(el => {
   el.setAttribute('aria-label', words.join(' '));
 });
 
-/* ---- reveal: hero on load, rest on scroll ---- */
+/* ---- reveal: hero on load (after cover dismissed), rest on scroll ---- */
 const hero = $('#top');
-const start = () => $$('.hero [data-split], .hero .reveal').forEach(el => el.classList.add('is-in'));
-(document.fonts && document.fonts.ready ? Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1200))]) : Promise.resolve())
-  .then(() => requestAnimationFrame(start));
+const startHeroReveal = () => $$('.hero [data-split], .hero .reveal').forEach(el => el.classList.add('is-in'));
 
 const io = new IntersectionObserver(es => es.forEach(e => {
   if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
@@ -95,41 +93,75 @@ tick(); setInterval(tick, 1000);
   $('#calendar').innerHTML = html + '</div>';
 })();
 
-/* ---- add to calendar (.ics) ---- */
+/* ---- add to calendar (Google Calendar) ---- */
 $('#addCal').addEventListener('click', () => {
   const f = d => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
   const end = new Date(target.getTime() + CONFIG.durationHours * 3600e3);
-  const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Wedding Invitation//EN','BEGIN:VEVENT',
-    `UID:${Date.now()}@wedding`, `DTSTAMP:${f(new Date())}`, `DTSTART:${f(target)}`, `DTEND:${f(end)}`,
-    `SUMMARY:Nikkah of ${nikkahFirst} & Reception of ${recFirst}`,
-    `LOCATION:${CONFIG.venue.name}\\, ${CONFIG.venue.line1}`,
-    'END:VEVENT','END:VCALENDAR'].join('\r\n');
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
-  a.download = 'wedding-invitation.ics'; a.click();
-  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  const title = `Nikkah of ${nikkahFirst} & Reception of ${recFirst}`;
+  const details = `Warmly inviting you to celebrate the Nikkah of ${CONFIG.nikkah.bride} & ${CONFIG.nikkah.groom} and the wedding reception of ${CONFIG.reception.groom} & ${CONFIG.reception.bride}.`;
+  const location = `${CONFIG.venue.name}, ${CONFIG.venue.line1}`;
+  
+  const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE` +
+    `&text=${encodeURIComponent(title)}` +
+    `&dates=${f(target)}/${f(end)}` +
+    `&details=${encodeURIComponent(details)}` +
+    `&location=${encodeURIComponent(location)}`;
+
+  window.open(gcalUrl, '_blank');
 });
 
 /* ---- RSVP -> WhatsApp ---- */
-$('#rsvpForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const f = new FormData(e.target);
-  const text = `Wedding RSVP\nName: ${f.get('name')}\nResponse: ${f.get('attend')}\nGuests: ${f.get('guests')}` +
-    (f.get('msg') ? `\nMessage: ${f.get('msg')}` : '');
-  $('#thanks').hidden = false;
-  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(text)}`, '_blank');
-});
+const rsvpForm = $('#rsvpForm');
+if (rsvpForm) {
+  rsvpForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const text = `Wedding RSVP\nName: ${f.get('name')}\nResponse: ${f.get('attend')}\nGuests: ${f.get('guests')}` +
+      (f.get('msg') ? `\nMessage: ${f.get('msg')}` : '');
+    $('#thanks').hidden = false;
+    window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(text)}`, '_blank');
+  });
+}
 
-/* ---- music (starts on first touch; hides if file missing) ---- */
+/* ---- cover screen + music ---- */
 (function () {
-  const btn = $('#music'), audio = new Audio(CONFIG.music);
-  audio.loop = true; audio.preload = 'none';
-  audio.addEventListener('error', () => { btn.hidden = true; });
-  fetch(CONFIG.music, { method: 'HEAD' }).then(r => { if (r.ok) btn.hidden = false; }).catch(() => {});
+  const cover = $('#cover');
+  const openBtn = $('#openInvitation');
+  const btn = $('#music');
+  const audio = new Audio(CONFIG.music);
+  audio.loop = true; audio.preload = 'auto';
+
+  // lock scroll while cover is visible
+  document.body.classList.add('cover-active');
+
   const set = on => btn.classList.toggle('playing', on);
   const play = () => audio.play().then(() => set(true)).catch(() => set(false));
-  let auto = true;
-  const first = () => { if (auto && !btn.hidden) play(); auto = false; };
-  ['touchstart', 'click', 'scroll'].forEach(ev => addEventListener(ev, first, { once: true, passive: true }));
-  btn.addEventListener('click', e => { e.stopPropagation(); auto = false; audio.paused ? play() : (audio.pause(), set(false)); });
+
+  // "Open Invitation" button
+  openBtn.addEventListener('click', () => {
+    // dismiss cover
+    cover.classList.add('out');
+    document.body.classList.remove('cover-active');
+
+    // start music
+    play();
+
+    // show music toggle button
+    btn.hidden = false;
+
+    // trigger hero reveal after cover fades
+    setTimeout(() => {
+      startHeroReveal();
+      cover.addEventListener('transitionend', () => cover.remove(), { once: true });
+    }, 100);
+  });
+
+  // music toggle button
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    audio.paused ? play() : (audio.pause(), set(false));
+  });
+
+  // hide music button if file is missing
+  audio.addEventListener('error', () => { btn.hidden = true; });
 })();
