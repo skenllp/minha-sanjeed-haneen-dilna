@@ -31,6 +31,7 @@ const V = {
   hosts: CONFIG.hosts, 'hosts-invite': `${CONFIG.hosts} warmly invite you to the`,
   nb: CONFIG.nikkah.bride, ng: CONFIG.nikkah.groom, rg: CONFIG.reception.groom, rb: CONFIG.reception.bride,
   'nb-first': f1(CONFIG.nikkah.bride), 'ng-first': f1(CONFIG.nikkah.groom),
+  'rg-first': f1(CONFIG.reception.groom), 'rb-first': f1(CONFIG.reception.bride),
   'nikkah-names': nikkahFirst, 'reception-names': recFirst, 'rec-first': recFirst,
   venue: CONFIG.venue.name, 'venue-upper': CONFIG.venue.name.toUpperCase(), line1: CONFIG.venue.line1, line2: CONFIG.venue.line2,
   'date-long': dateLong, 'date-upper': dateLong.toUpperCase(),
