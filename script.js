@@ -27,8 +27,12 @@ const dateLong = `${DAYS[wd]}, ${D} ${MONTHS[M - 1]} ${Y}`;
 const f1 = n => n.replace(/^Dr\.\s*/, '').split(' ')[0];
 const nikkahFirst = `${f1(CONFIG.nikkah.bride)} & ${f1(CONFIG.nikkah.groom)}`;
 const recFirst = `${f1(CONFIG.reception.groom)} & ${f1(CONFIG.reception.bride)}`;
+const hostParts = (CONFIG.hosts || '').split(/\s*&\s*/);
+const hostFather = hostParts[0] || 'Ashraf Parappurath';
+const hostMother = hostParts[1] || 'Thajunniza MK';
 const V = {
   hosts: CONFIG.hosts, 'hosts-invite': `${CONFIG.hosts} warmly invite you to the`,
+  'host-father': hostFather, 'host-mother': hostMother,
   nb: CONFIG.nikkah.bride, ng: CONFIG.nikkah.groom, rg: CONFIG.reception.groom, rb: CONFIG.reception.bride,
   'nb-first': f1(CONFIG.nikkah.bride), 'ng-first': f1(CONFIG.nikkah.groom),
   'rg-first': f1(CONFIG.reception.groom), 'rb-first': f1(CONFIG.reception.bride),
@@ -36,7 +40,7 @@ const V = {
   venue: CONFIG.venue.name, 'venue-upper': CONFIG.venue.name.toUpperCase(), line1: CONFIG.venue.line1, line2: CONFIG.venue.line2,
   'date-long': dateLong, 'date-upper': dateLong.toUpperCase(),
   time: time12, 'time-upper': `${time12} ONWARDS`,
-  day: String(D), 'month-upper': MONTHS[M - 1].toUpperCase(), year: String(Y), 'weekday-upper': DAYS[wd].toUpperCase()
+  day: String(D), 'month-upper': MONTHS[M - 1].toUpperCase(), 'month-name': MONTHS[M - 1], year: String(Y), 'weekday-upper': DAYS[wd].toUpperCase()
 };
 $$('[data-bind]').forEach(el => { const v = V[el.dataset.bind]; if (v != null) el.textContent = v; });
 $('#mapBtn').href = CONFIG.venue.mapsUrl;
@@ -76,40 +80,13 @@ onScroll();
 const pad = n => String(n).padStart(2, '0');
 function tick() {
   let s = Math.max(0, Math.floor((target - Date.now()) / 1000));
-  $('#cd-d').textContent = pad(Math.floor(s / 86400)); s %= 86400;
-  $('#cd-h').textContent = pad(Math.floor(s / 3600)); s %= 3600;
-  $('#cd-m').textContent = pad(Math.floor(s / 60));
-  $('#cd-s').textContent = pad(s % 60);
+  const elD = $('#cd-d'), elH = $('#cd-h'), elM = $('#cd-m'), elS = $('#cd-s');
+  if (elD) elD.textContent = pad(Math.floor(s / 86400)); s %= 86400;
+  if (elH) elH.textContent = pad(Math.floor(s / 3600)); s %= 3600;
+  if (elM) elM.textContent = pad(Math.floor(s / 60));
+  if (elS) elS.textContent = pad(s % 60);
 }
 tick(); setInterval(tick, 1000);
-
-/* ---- calendar ---- */
-(function () {
-  const first = (new Date(Date.UTC(Y, M - 1, 1)).getUTCDay() + 6) % 7;   // Monday-first
-  const days = new Date(Date.UTC(Y, M, 0)).getUTCDate();
-  let html = `<h4>${MONTHS[M - 1]} ${Y}</h4><div class="cal-grid">` +
-    ['Mo','Tu','We','Th','Fr','Sa','Su'].map(d => `<span class="h">${d}</span>`).join('');
-  for (let i = 0; i < first; i++) html += '<span></span>';
-  for (let d = 1; d <= days; d++) html += `<span class="${d === D ? 'on' : ''}">${d}</span>`;
-  $('#calendar').innerHTML = html + '</div>';
-})();
-
-/* ---- add to calendar (Google Calendar) ---- */
-$('#addCal').addEventListener('click', () => {
-  const f = d => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
-  const end = new Date(target.getTime() + CONFIG.durationHours * 3600e3);
-  const title = `Nikkah of ${nikkahFirst} & Reception of ${recFirst}`;
-  const details = `Warmly inviting you to celebrate the Nikkah of ${CONFIG.nikkah.bride} & ${CONFIG.nikkah.groom} and the wedding reception of ${CONFIG.reception.groom} & ${CONFIG.reception.bride}.`;
-  const location = `${CONFIG.venue.name}, ${CONFIG.venue.line1}`;
-  
-  const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE` +
-    `&text=${encodeURIComponent(title)}` +
-    `&dates=${f(target)}/${f(end)}` +
-    `&details=${encodeURIComponent(details)}` +
-    `&location=${encodeURIComponent(location)}`;
-
-  window.open(gcalUrl, '_blank');
-});
 
 /* ---- RSVP -> WhatsApp ---- */
 const rsvpForm = $('#rsvpForm');

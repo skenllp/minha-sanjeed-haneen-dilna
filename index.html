@@ -13,7 +13,7 @@
 <meta property="og:image" content="https://minha-sanjeed-haneen-dilna.vercel.app/og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500&family=Amiri:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&family=Amiri:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -43,48 +43,49 @@
 <main class="frame">
   <div class="page-bg" aria-hidden="true"></div>
 
-  <!-- 1. HERO (NIKKAH) -->
+  <!-- 1. HERO -->
   <header class="hero" id="top">
     <div class="hero-bg" id="heroBg"></div>
     <div class="hero-content">
-      <p class="arabic" data-split data-delay="0.2" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-      <p class="eyebrow bism" data-split data-delay="0.5">In the name of God, the Most Gracious, the Most Merciful</p>
-      <p class="hero-small" data-split data-delay="0.9" data-bind="hosts-invite">Ashraf Parappurath &amp; Thajunniza MK warmly invite you to the</p>
-      <p class="hero-tag reveal" style="--d:1.4s">Nikkah of</p>
-      <h1 class="hero-names">
-        <span class="hn" data-split data-delay="1.7" data-bind="nb-first">Minha</span>
-        <span class="hn amp" data-split data-delay="2.0">&amp;</span>
-        <span class="hn" data-split data-delay="2.2" data-bind="ng-first">Sanjeedh</span>
-      </h1>
-      <div class="hero-line reveal" style="--d:2.6s"></div>
-      <p class="hero-date reveal" style="--d:2.8s"><span data-bind="date-long">Saturday, 26 December 2026</span> &middot; <span data-bind="time">10:30 AM</span></p>
-      <p class="hero-place reveal" style="--d:3.0s" data-bind="venue">Chaliyar Convention Centre</p>
-    </div>
-    <a href="#reception-hero" class="scroll-hint reveal" style="--d:3.4s" aria-label="Scroll down"><span>Scroll</span><i></i></a>
-  </header>
+      <p class="arabic" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+      <p class="eyebrow bism">IN THE NAME OF GOD, THE MOST GRACIOUS, THE MOST MERCIFUL</p>
+      
+      <div class="hero-orn" aria-hidden="true"><i></i><span>♥</span><i></i></div>
 
-  <!-- 1B. RECEPTION SECTION -->
-  <section class="sec reception-sec" id="reception-hero">
-    <p class="kicker reveal">Cordially inviting you to</p>
-    <p class="hero-tag reveal" style="margin-top:.4rem">The Wedding Reception of</p>
-    <h2 class="hero-names" style="margin: .6rem 0 .4rem">
-      <span class="hn reveal" data-bind="rg-first">Haneen</span>
-      <span class="hn amp reveal">&amp;</span>
-      <span class="hn reveal" data-bind="rb-first">Dilna</span>
-    </h2>
-    <div class="hero-line reveal"></div>
-    <p class="hero-date reveal"><span data-bind="date-long">Saturday, 26 December 2026</span> &middot; <span data-bind="time">10:30 AM</span></p>
-    <p class="hero-place reveal" data-bind="venue">Chaliyar Convention Centre</p>
-  </section>
+      <p class="hero-blessing">WITH HEARTFELT JOY AND BLESSINGS<br>OF THE ALMIGHTY, WE,</p>
+      
+      <div class="hero-hosts">
+        <span class="host-line">Ashraf Parappurath</span>
+        <span class="host-line">Thajunniza MK</span>
+      </div>
+
+      <p class="hero-invite">warmly invite you to the</p>
+
+      <!-- <p class="hero-tag">Nikkah of</p>
+      <h1 class="hero-names">
+        <span class="hn" data-bind="nb-first">Minha</span>
+        <span class="hn amp">&amp;</span>
+        <span class="hn" data-bind="ng-first">Sanjeedh</span>
+      </h1>
+
+      <p class="hero-small rec">and the wedding reception of</p>
+      <p class="hero-rec" data-bind="rec-first">Haneen &amp; Dilna</p>
+
+      <div class="hero-line"></div>
+      <p class="hero-date"><span data-bind="date-long">Saturday, 26 December 2026</span> &middot; <span data-bind="time">10:30 AM</span></p>
+      <p class="hero-place" data-bind="venue">Chaliyar Convention Centre</p> -->
+    </div>
+    <a href="#welcome" class="scroll-hint" aria-label="Scroll down"><span>Scroll</span><i></i></a>
+  </header>
 
   <!-- 2. WELCOME + FAMILIES -->
   <section class="sec" id="welcome">
-    <p class="kicker reveal">With heartfelt joy &amp; blessings of the Almighty</p>
-    <h2 class="title" data-split>You are warmly invited</h2>
-    <p class="lead reveal"><b data-bind="hosts">Ashraf Parappurath &amp; Thajunniza MK</b> warmly invite you to the Nikkah of our beloved daughter and to the wedding reception of our beloved son.</p>
+    <!-- <p class="kicker reveal">With heartfelt joy &amp; blessings of the Almighty</p> -->
+    <!-- <h2 class="title" data-split>You are warmly invited</h2> -->
+    <!-- <p class="lead reveal"><b data-bind="hosts">Ashraf Parappurath &amp; Thajunniza MK</b> warmly invite you to the Nikkah of our beloved daughter and to the wedding reception of our beloved son.</p> -->
 
     <div class="card person reveal">
-      <span class="role">The Nikkah</span>
+      <span class="role">To The Nikkah</span>
       <h3 class="pname" data-bind="nb">Minha Nourin</h3>
       <p class="child">Daughter of</p>
       <p class="parents">Ashraf Parappurath &amp; Thajunniza MK</p>
@@ -112,101 +113,18 @@
     </div>
   </section>
 
-  <!-- 3. INVITATION BOARD -->
-  <section class="sec board-sec" id="board">
-    <p class="kicker reveal">Our invitation</p>
-    <h2 class="title" data-split>You are invited</h2>
-
-    <div class="board-wrap reveal" id="boardWrap">
-      <svg class="board" viewBox="0 0 360 590" role="img" aria-label="Wedding invitation board on an easel">
-        <defs>
-          <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#fffdf4"/><stop offset="1" stop-color="#f6f0da"/>
-          </linearGradient>
-          <linearGradient id="wood" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stop-color="#b98a52"/><stop offset=".5" stop-color="#d1a56d"/><stop offset="1" stop-color="#a97a46"/>
-          </linearGradient>
-          <filter id="soft" x="-20%" y="-10%" width="140%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#2f4a32" flood-opacity=".25"/></filter>
-          <symbol id="sprig" viewBox="0 0 100 100">
-            <path d="M6 98 C18 72 32 46 66 14" fill="none" stroke="#6f8d52" stroke-width="1.4" stroke-linecap="round"/>
-            <g fill="#86a665">
-              <ellipse cx="18" cy="76" rx="10" ry="4.2" transform="rotate(-40 18 76)"/>
-              <ellipse cx="34" cy="58" rx="10" ry="4.2" transform="rotate(-70 34 58)"/>
-              <ellipse cx="30" cy="48" rx="9" ry="3.8" transform="rotate(10 30 48)"/>
-              <ellipse cx="48" cy="38" rx="9" ry="3.8" transform="rotate(-80 48 38)"/>
-              <ellipse cx="46" cy="28" rx="8" ry="3.4" transform="rotate(15 46 28)"/>
-              <ellipse cx="62" cy="20" rx="7" ry="3.2" transform="rotate(-60 62 20)"/>
-              <ellipse cx="10" cy="88" rx="8" ry="3.4" transform="rotate(20 10 88)"/>
-            </g>
-            <g fill="#fff" stroke="#d9d4b8" stroke-width=".6">
-              <circle cx="24" cy="64" r="3.6"/><circle cx="40" cy="44" r="3.2"/><circle cx="56" cy="30" r="3"/><circle cx="14" cy="82" r="3"/>
-            </g>
-            <g fill="#d8b85c"><circle cx="24" cy="64" r="1"/><circle cx="40" cy="44" r="1"/><circle cx="56" cy="30" r="1"/></g>
-          </symbol>
-        </defs>
-
-        <!-- easel -->
-        <g stroke="url(#wood)" stroke-linecap="round">
-          <line x1="86" y1="440" x2="52" y2="582" stroke-width="9"/>
-          <line x1="274" y1="440" x2="308" y2="582" stroke-width="9"/>
-          <line x1="180" y1="470" x2="180" y2="584" stroke-width="7" opacity=".85"/>
-          <line x1="64" y1="540" x2="296" y2="540" stroke-width="6"/>
-        </g>
-
-        <!-- board -->
-        <g filter="url(#soft)">
-          <path id="boardShape" fill="url(#paper)" stroke="#b9c9a0" stroke-width="5" d="M40 470 V150 C40 110 90 105 110 80 C125 60 150 55 160 38 C168 25 172 18 180 12 C188 18 192 25 200 38 C210 55 235 60 250 80 C270 105 320 110 320 150 V470 Z"/>
-        </g>
-        <path fill="none" stroke="#c4a85a" stroke-width="1" opacity=".8" transform="translate(180 241) scale(.92 .95) translate(-180 -241)" d="M40 470 V150 C40 110 90 105 110 80 C125 60 150 55 160 38 C168 25 172 18 180 12 C188 18 192 25 200 38 C210 55 235 60 250 80 C270 105 320 110 320 150 V470 Z"/>
-        <rect x="30" y="468" width="300" height="14" rx="3" fill="url(#wood)"/>
-
-        <!-- text -->
-        <g class="bt-group" text-anchor="middle">
-          <text class="bt bt-welcome" style="--i:0" x="180" y="114">WELCOME</text>
-          <text class="bt bt-it" style="--i:1" x="180" y="136">to the nikkah of</text>
-          <text class="bt bt-name" style="--i:2" x="180" y="184" data-bind="nikkah-names">Minha &amp; Sanjeedh</text>
-          <text class="bt bt-it" style="--i:3" x="180" y="216">and the wedding reception of</text>
-          <text class="bt bt-name" style="--i:4" x="180" y="254" data-bind="reception-names">Haneen &amp; Dilna</text>
-          <g class="bt" style="--i:5" fill="none" stroke="#c4a85a" stroke-width="1">
-            <line x1="130" y1="276" x2="170" y2="276"/><line x1="190" y1="276" x2="230" y2="276"/>
-            <path d="M180 270 l5 6 l-5 6 l-5 -6 Z" fill="#c4a85a" stroke="none"/>
-          </g>
-          <text class="bt bt-date" style="--i:6" x="180" y="306" data-bind="date-upper">SATURDAY, 26 DECEMBER 2026</text>
-          <text class="bt bt-time" style="--i:7" x="180" y="326" data-bind="time-upper">10:30 AM ONWARDS</text>
-          <text class="bt bt-venue" style="--i:8" x="180" y="358" data-bind="venue-upper">CHALIYAR CONVENTION CENTRE</text>
-          <text class="bt bt-addr" style="--i:9" x="180" y="376" data-bind="line1">Edavannappara</text>
-          <text class="bt bt-addr" style="--i:9" x="180" y="392" data-bind="line2"></</text>
-        </g>
-
-        <use href="#sprig" x="46" y="396" width="82" height="82" class="bt" style="--i:10"/>
-        <use href="#sprig" x="46" y="396" width="82" height="82" class="bt" style="--i:10" transform="translate(360 0) scale(-1 1)"/>
-      </svg>
+  <!-- 3. SAVE THE DATE (MATCHING REFERENCE STRUCTURE) -->
+  <section class="sec save-date-sec" id="date">
+    <h2 class="sd-title reveal">Save the Date</h2>
+    <p class="sd-join reveal">JOIN US ON</p>
+    
+    <div class="sd-date-stack reveal">
+      <span class="sd-day" data-bind="day">26</span>
+      <span class="sd-month" data-bind="month-name">December</span>
+      <span class="sd-year" data-bind="year">2026</span>
     </div>
-  </section>
 
-  <!-- 4. COUNTDOWN + CALENDAR -->
-  <section class="sec" id="date">
-    <div class="card dark reveal">
-      <p class="kicker light">The celebration begins</p>
-      <h2 class="title light" data-split>Save the date</h2>
-      <div class="datebox">
-        <span class="d-num" data-bind="day">26</span>
-        <span class="d-bar"></span>
-        <span class="d-txt"><b data-bind="month-upper">DECEMBER</b><em data-bind="year">2026</em></span>
-      </div>
-      <p class="d-meta"><span data-bind="weekday-upper">SATURDAY</span> &middot; <span data-bind="time">10:30 AM</span></p>
-
-      <div class="countdown" id="countdown">
-        <div><b id="cd-d">00</b><span>Days</span></div>
-        <div><b id="cd-h">00</b><span>Hours</span></div>
-        <div><b id="cd-m">00</b><span>Mins</span></div>
-        <div><b id="cd-s">00</b><span>Secs</span></div>
-      </div>
-
-      <div class="cal card-light" id="calendar"></div>
-
-      <button class="link-btn" id="addCal" type="button">Add to Calendar</button>
-    </div>
+    <p class="sd-time reveal"><span data-bind="time">10:30 AM</span> onwards</p>
   </section>
 
   <!-- 5. VENUE -->
@@ -250,15 +168,35 @@
   </section>
   -->
 
-  <footer class="foot">
-    <div class="orn"><i></i><b></b><i></i></div>
-    <p class="foot-names"><span data-bind="nikkah-names">Minha &amp; Sanjeedh</span></p>
-    <p class="foot-names f2"><span data-bind="reception-names">Haneen &amp; Dilna</span></p>
-    <p class="foot-sub">Your presence and prayers will make our joy complete</p>
-    <div class="foot-wishes">
-      <span class="wishes-label">With best wishes from</span>
-      <p class="wishes-names">Hibu, Naju, Joe</p>
+  <!-- 7. FOOTER FINALE (COUNTER + BEST WISHES WITH FULL PRIORITY) -->
+  <footer class="foot" id="finale">
+    <p class="foot-kicker reveal">Counting Down to the Celebration</p>
+
+    <!-- 4-Box Countdown Timer -->
+    <div class="countdown reveal" id="countdown">
+      <div><b id="cd-d">00</b><span>Days</span></div>
+      <div><b id="cd-h">00</b><span>Hours</span></div>
+      <div><b id="cd-m">00</b><span>Minutes</span></div>
+      <div><b id="cd-s">00</b><span>Seconds</span></div>
     </div>
+
+    <!-- Islamic Blessing -->
+    <p class="foot-inshallah reveal">In Sha Allah</p>
+
+    <!-- Gold Diamond Divider -->
+    <div class="orn reveal" aria-hidden="true"><i></i><b></b><i></i></div>
+
+    <!-- Best Wishes Section -->
+    <div class="foot-wishes reveal">
+      <span class="wishes-label">BEST WISHES</span>
+      <div class="wishes-list">
+        <p class="wishes-person">HIBU</p>
+        <p class="wishes-person">NAJU</p>
+        <p class="wishes-person">JOE</p>
+      </div>
+    </div>
+
+    <p class="foot-sub reveal">Your presence and prayers will make our joy complete</p>
   </footer>
 
   <button class="music" id="music" type="button" aria-label="Toggle music" hidden>
