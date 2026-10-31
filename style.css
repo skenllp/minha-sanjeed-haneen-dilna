@@ -945,6 +945,21 @@ body.cover-active {
   line-height: 1.35;
 }
 
+.wishes-amp {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--gold);
+  margin: .15rem 0;
+}
+
+.wishes-person.sub {
+  font-size: clamp(1.1rem, 3.8vw, 1.35rem);
+  font-weight: 400;
+  letter-spacing: .1em;
+  opacity: .85;
+}
+
 .foot-sub {
   font-style: italic;
   font-size: 1.05rem;
